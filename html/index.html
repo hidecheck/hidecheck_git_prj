@@ -1,0 +1,300 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sphinx ハンズオン #3</title>
+    
+    <link rel="stylesheet" href="_static/s6.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/s6.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+
+var bodyStyle = {
+    width: '100%',
+    height: '100%',
+    padding: '0',
+    margin: '0',
+    overflow: 'hidden',
+    backgroundColor: 'white',
+};
+
+s6.css('html', bodyStyle);
+s6.css('body', bodyStyle);
+s6.css('.s6 .page.default > h2', {margin:'0'});
+
+var pr;
+s6.attach(s6, 'ready', function ready() {
+    var html = document.documentElement;
+    var height = html.offsetHeight;
+    var width = html.offsetWidth;
+    var top = 0;
+    var left = 0;
+
+    if (height / width < 0.75) {
+        var originalWidth = width;
+        width = height / 0.75;
+        left = (originalWidth - width) / 2 + 'px';
+    }
+    else {
+        var originalHeight = height;
+        height = width * 0.75;
+        top = (originalHeight - height) / 2 + 'px';
+    }
+
+    var result;
+    if (result = document.cookie.match(/page=(\d+)/)) {
+        var startIndex = +result[1];
+    }
+
+    var container = $('.section')[0];
+    pr = new s6.Presentation({
+            thema: 'sphinx',
+            element: container,
+            width: width,
+            height: height,
+            startIndex: startIndex,
+            fontSize: 0.08
+        });
+    pr.style.left = left;
+    pr.style.top = top;
+    pr.start();
+
+    var indexNoOutline = false;
+
+    pr.funcPages.index.attachPage('click', function(i, element, wrapper) {
+        indexNoOutline = true;
+        setTimeout(function() {
+            indexNoOutline =false
+        }, 1000);
+        wrapper.style.background = '';
+        pr.go(i);
+    });
+
+    pr.funcPages.index.attachPage('mouseover', function(i, element, wrapper) {
+        if (indexNoOutline) return;
+        wrapper.className += ' selected';
+    });
+    
+    pr.funcPages.index.attachPage('mouseout', function(i, element, wrapper) {
+        wrapper.className = 'wrapper';
+    });
+
+    try {
+        var isIframe = !(window.parent == window);
+    } catch(e) {
+        isIframe = true;
+    }
+
+    s6.attach(document, 'click', 'step', 0, pr);
+    s6.attach(document, 'keypress Right', 'step', 0, pr);
+    s6.attach(document, 'keypress Left',  'prev', 0, pr);
+    s6.attach(document, 'keypress Up',    function() { pr.go('index') });
+    s6.attach(document, 'keypress Down',  'back', 0, pr);
+});
+
+// save current page
+setInterval(function() {
+    document.cookie = 'page=' + pr.index;
+}, 1000);
+// ]]>
+</script>
+
+
+  </head>
+  <body>
+<div class="header">
+<div style="float:right;"><a href="#">≫</a></div>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="#">s6sample 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="sphinx-3">
+<h1>Sphinx ハンズオン #3<a class="headerlink" href="#sphinx-3" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>講師紹介<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="tk0miya">
+<h2>講師紹介: &#64;tk0miya<a class="headerlink" href="#tk0miya" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>主犯格の男性</li>
+<li>Sphinx-users.jp 新会長</li>
+<li>blockdiag のなかのひと</li>
+<li>主に Linux で使ってます</li>
+</ul>
+</div>
+<div class="section" id="takanory">
+<h2>講師紹介: &#64;takanory<a class="headerlink" href="#takanory" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>実行犯とみられる男性</li>
+<li>Plone4 の本を書いた人(のひとり)</li>
+<li>pythonボルダリング部(#kabepy)部長</li>
+<li>主に Windows で使ってます</li>
+</ul>
+</div>
+<div class="section" id="wonderful-panda">
+<h2>講師紹介: &#64;wonderful_panda<a class="headerlink" href="#wonderful-panda" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>講師に名乗りでてくれた優しいお方</li>
+<li>Bazaarの人(TortoiseBzr コミッタ)</li>
+<li><a class="reference external" href="http://standing-shoebill.appspot.com/bzr-startup-guide/index.html">Bazzar スタートアップガイド</a> は Sphinx 製</li>
+</ul>
+</div>
+<div class="section" id="usaturn">
+<h2>講師紹介: &#64;usaturn<a class="headerlink" href="#usaturn" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>講師に名乗りでてくれた優しいお方</li>
+<li>絶賛修行中のインフラエンジニア</li>
+<li>ふつうの Sphinx ユーザー</li>
+<li>主に Windows で使ってます</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>ハンズオンの内容<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>インストール</li>
+<li>マークアップ課題</li>
+<li>その他質問大会</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>ハンズオンの進め方<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>現時点での理解度を元にチーム分けします</li>
+<li>チームごとに進めます</li>
+<li>おしまい</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>困ったときには<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>手をあげよう</li>
+<li>まわりの人に聞こう</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>チーム分け<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>インストールしてない人</li>
+<li>ちょっと試してみた人</li>
+<li>もう使っている人</li>
+<li>超人</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>おおざっぱなタイムスケジュール<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>19:30- 開会式 ← いまココ</li>
+<li>19:40- ハンズオン(前半)</li>
+<li>20:30- 休憩</li>
+<li>20:40- ハンズオン(後半)</li>
+<li>21:45- まとめ</li>
+<li>22:00  撤収 (懇親会?)</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>会場からの連絡<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">お手洗い</p>
+</li>
+<li><p class="first">自販機の位置</p>
+</li>
+<li><p class="first">タバコは休憩時間に。(外です)</p>
+</li>
+<li><dl class="first docutils">
+<dt>20:00 以降外から入れなくなります</dt>
+<dd><ul class="first last simple">
+<li>Twitter で叫んで</li>
+<li>叫んでいる人がいたら教えてください</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>その他連絡事項<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">無線LAN</p>
+</li>
+<li><p class="first">飲食可です</p>
+</li>
+<li><p class="first">ハッシュタグ #sphinxjp</p>
+</li>
+<li><dl class="first docutils">
+<dt>写真班が撮影して回ります</dt>
+<dd><ul class="first last simple">
+<li>撮られたくない人は教えてください</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>参考資料<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Sphinx-users.jp</p>
+</li>
+<li><dl class="first docutils">
+<dt>今日の資料</dt>
+<dd><ul class="first last">
+<li><p class="first">すべて Sphinx で作られています</p>
+</li>
+<li><p class="first">sphinxjp.themes.s6 テーマを使ってます。</p>
+</li>
+<li><dl class="first docutils">
+<dt>See bitbucket</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://bitbucket.org/sphinxjp/handson/src">https://bitbucket.org/sphinxjp/handson/src</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="#">s6sample 1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="footer">
+    <span>Sphinx ハンズオン #3 :: 2012, hidecheck</span><br />
+    <span class="hidden">操作方法: 上下左右キーで操作です</span>
+</div>
+
+  </body>
+</html>
